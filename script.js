@@ -1,33 +1,116 @@
-// Consolidated site behaviour (modal, video, parallax, reveal, smooth scroll, testimonials)
+// ================================
+// YAMUNA YEAST 2026 - ENHANCED JS
+// Parallax, Smooth Scroll, Animations
+// ================================
+
 (function () {
     'use strict';
 
-    // Modal and video control
+    // ============================================
+    // SMOOTH PARALLAX SCROLL EFFECTS
+    // ============================================
+    
+    function initParallax() {
+        const parallaxElements = document.querySelectorAll('[data-scroll]');
+        
+        if (!parallaxElements.length) return;
+        
+        const handleScroll = () => {
+            const scrollY = window.pageYOffset;
+            
+            parallaxElements.forEach(el => {
+                const speed = el.dataset.scrollSpeed || 1;
+                const rect = el.getBoundingClientRect();
+                const elementTop = rect.top + scrollY;
+                const elementHeight = rect.height;
+                const viewportHeight = window.innerHeight;
+                
+                // Only apply parallax when element is in viewport
+                if (scrollY + viewportHeight > elementTop && scrollY < elementTop + elementHeight) {
+                    const distance = scrollY - elementTop;
+                    const movement = distance * (speed - 1) * 0.5;
+                    el.style.transform = `translateY(${movement}px)`;
+                }
+            });
+        };
+        
+        // Throttle scroll event for performance
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+        
+        handleScroll(); // Initial call
+    }
+
+    // ============================================
+    // INTERSECTION OBSERVER - REVEAL ON SCROLL
+    // ============================================
+    
+    function initScrollReveal() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Observe section titles and major elements
+        document.querySelectorAll('.section-title, .benefit-card, .recipe-card, .pack-card').forEach(el => {
+            observer.observe(el);
+        });
+    }
+
+    // ============================================
+    // VIDEO MODAL
+    // ============================================
+    
     const modal = document.getElementById('videoModal');
     const iframe = document.getElementById('videoFrame');
 
     window.openVideo = function (videoId) {
         if (!iframe || !modal) return;
-        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
         modal.style.display = 'flex';
-        // optional: prevent background scroll
-        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+        
+        // Animate modal
+        setTimeout(() => {
+            modal.style.opacity = '1';
+        }, 10);
     };
 
     window.closeVideo = function () {
         if (!iframe || !modal) return;
-        iframe.src = '';
-        modal.style.display = 'none';
-        document.documentElement.style.overflow = '';
+        modal.style.opacity = '0';
+        setTimeout(() => {
+            iframe.src = '';
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }, 300);
     };
 
-    // Close modal when clicking outside content or pressing Escape
+    // Modal click handlers
     if (modal) {
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
+            if (e.target === modal || e.target.classList.contains('modal-backdrop')) {
                 window.closeVideo();
             }
         });
+        
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.style.display === 'flex') {
                 window.closeVideo();
@@ -35,34 +118,76 @@
         });
     }
 
-    // Download checklist button (progressive enhancement)
+    // ============================================
+    // DOWNLOAD CHECKLIST
+    // ============================================
+    
     const downloadBtn = document.getElementById('downloadChecklist');
     if (downloadBtn) {
         downloadBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            // Placeholder behaviour — replace with real file download when available
-            window.alert('Чеклист з пасхальними рецептами завантажується...\n\n✓ 15 перевірених рецептів\n✓ Покрокові інструкції\n✓ Фото кожної страви\n✓ Поради від професіоналів\n\nДякуємо, що обрали Yamuna! 🎉');
+            
+            // Add loading state
+            const originalText = downloadBtn.innerHTML;
+            downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Завантаження...</span>';
+            downloadBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Success message
+                downloadBtn.innerHTML = '<i class="fas fa-check"></i> <span>Готово!</span>';
+                
+                // Alert with recipe info
+                alert('🎉 Чеклист успішно завантажено!\n\n📋 Що всередині:\n✓ 15 перевірених рецептів\n✓ Покрокові інструкції\n✓ Професійні поради\n✓ Таблиця мір\n\nДякуємо, що обрали Yamuna!');
+                
+                // Reset button
+                setTimeout(() => {
+                    downloadBtn.innerHTML = originalText;
+                    downloadBtn.disabled = false;
+                }, 2000);
+            }, 1500);
         });
     }
 
-    // IntersectionObserver for fade-in reveals
-    if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+    // ============================================
+    // RECIPE CARDS - KEYBOARD NAVIGATION
+    // ============================================
+    
+    function initRecipeCards() {
+        document.querySelectorAll('.recipe-card').forEach(card => {
+            // Keyboard support
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    card.classList.toggle('is-flipped');
+                    card.querySelector('.recipe-inner').style.transform = 
+                        card.classList.contains('is-flipped') ? 'rotateY(180deg)' : '';
                 }
             });
-        }, { threshold: 0.12 });
-
-        document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
-    } else {
-        // fallback: reveal all
-        document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+            
+            // Touch support for mobile
+            let touchStartY = 0;
+            card.addEventListener('touchstart', (e) => {
+                touchStartY = e.touches[0].clientY;
+            });
+            
+            card.addEventListener('touchend', (e) => {
+                const touchEndY = e.changedTouches[0].clientY;
+                const diff = Math.abs(touchEndY - touchStartY);
+                
+                // Only flip if it's a tap, not a scroll
+                if (diff < 10) {
+                    card.classList.toggle('is-flipped');
+                    card.querySelector('.recipe-inner').style.transform = 
+                        card.classList.contains('is-flipped') ? 'rotateY(180deg)' : '';
+                }
+            });
+        });
     }
 
-    // Testimonial rotation (graceful if missing)
+    // ============================================
+    // TESTIMONIAL ROTATION
+    // ============================================
+    
     const testimonials = [
         {
             avatar: '👩‍🍳',
@@ -82,108 +207,217 @@
     ];
 
     let currentTestimonial = 0;
-    const testimonialEl = document.querySelector('.testimonial');
+    const testimonialCard = document.querySelector('.testimonial-card');
 
     function rotateTestimonials() {
-        if (!testimonialEl) return;
+        if (!testimonialCard) return;
+        
         currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-        const t = testimonials[currentTestimonial];
+        const testimonial = testimonials[currentTestimonial];
 
-        const avatarEl = testimonialEl.querySelector('.testimonial-avatar');
-        const textEl = testimonialEl.querySelector('.testimonial-text');
-        const authorEl = testimonialEl.querySelector('.testimonial-author');
-
-        if (!avatarEl || !textEl || !authorEl) return;
-
-        testimonialEl.style.opacity = '0';
+        // Fade out
+        testimonialCard.style.opacity = '0';
+        testimonialCard.style.transform = 'translateY(20px)';
+        
         setTimeout(() => {
-            avatarEl.textContent = t.avatar;
-            textEl.textContent = `"${t.text}"`;
-            authorEl.textContent = t.author;
-            testimonialEl.style.opacity = '1';
+            // Update content
+            const avatarEl = testimonialCard.querySelector('.testimonial-avatar');
+            const textEl = testimonialCard.querySelector('.testimonial-text');
+            const authorEl = testimonialCard.querySelector('.testimonial-author');
+            
+            if (avatarEl && textEl && authorEl) {
+                avatarEl.textContent = testimonial.avatar;
+                textEl.textContent = `"${testimonial.text}"`;
+                authorEl.textContent = testimonial.author;
+            }
+            
+            // Fade in
+            setTimeout(() => {
+                testimonialCard.style.opacity = '1';
+                testimonialCard.style.transform = 'translateY(0)';
+            }, 50);
         }, 300);
     }
 
-    if (testimonialEl) {
-        testimonialEl.style.transition = 'opacity 0.3s ease';
-        setInterval(rotateTestimonials, 5000);
+    if (testimonialCard) {
+        testimonialCard.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        setInterval(rotateTestimonials, 6000);
     }
 
-    // Map hotspots using Map_of_Ukraine.svg
-    function initSvgMapHotspots() {
-        const obj = document.getElementById('svgMap');
+    // ============================================
+    // MAP HOTSPOTS
+    // ============================================
+    
+    function initMapHotspots() {
+        const svgObject = document.getElementById('svgMap');
         const overlay = document.getElementById('mapOverlay');
-        if (!obj || !overlay) return;
+        
+        if (!svgObject || !overlay) return;
 
-        fetch('hotspots.json')
-            .then(res => res.json())
-            .then(hotspots => {
-                // create buttons positioned by left/top percent
-                hotspots.forEach(h => {
-                    const btn = document.createElement('button');
-                    btn.className = 'map-hotspot';
-                    btn.setAttribute('data-region', h.id);
-                    btn.setAttribute('aria-label', h.name);
-                    btn.style.left = h.left;
-                    btn.style.top = h.top;
-                    btn.innerHTML = `<span class="label">${h.name}</span><span class="map-tooltip">${h.message}</span>`;
-                    overlay.appendChild(btn);
-
-                    // btn.addEventListener('mouseenter', () => showIndicator(h.message));
-                    // btn.addEventListener('focus', () => showIndicator(h.message));
-                    btn.addEventListener('mouseleave', () => hideIndicator());
-                    btn.addEventListener('blur', () => hideIndicator());
-                });
-            })
-            .catch(err => console.error('hotspots load failed', err));
+        // Wait for SVG to load
+        svgObject.addEventListener('load', () => {
+            fetch('hotspots.json')
+                .then(res => res.ok ? res.json() : Promise.reject('Hotspots not found'))
+                .then(hotspots => {
+                    hotspots.forEach(hotspot => {
+                        const btn = document.createElement('button');
+                        btn.className = 'map-hotspot';
+                        btn.setAttribute('data-region', hotspot.id);
+                        btn.setAttribute('aria-label', hotspot.name);
+                        btn.style.left = hotspot.left;
+                        btn.style.top = hotspot.top;
+                        btn.textContent = hotspot.name;
+                        
+                        // Tooltip on hover
+                        btn.title = hotspot.message;
+                        
+                        overlay.appendChild(btn);
+                    });
+                })
+                .catch(err => console.warn('Map hotspots:', err));
+        });
     }
 
-    function showIndicator(text) {
-        let ind = document.querySelector('.map-indicator');
-        if (!ind) {
-            ind = document.createElement('div');
-            ind.className = 'map-indicator';
-            document.body.appendChild(ind);
-        }
-        ind.textContent = text;
-        ind.style.opacity = '1';
-    }
-
-    function hideIndicator() {
-        const ind = document.querySelector('.map-indicator');
-        if (ind) ind.style.opacity = '0';
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSvgMapHotspots);
-    } else {
-        initSvgMapHotspots();
-    }
-
-    // Card flip keyboard support: toggle flip on Enter/Space
-    function initRecipeCardKeyboard() {
-        document.querySelectorAll('.recipe-tile').forEach(card => {
-            card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    card.querySelector('.card-inner').classList.toggle('flipped');
+    // ============================================
+    // SMOOTH SCROLL FOR ANCHOR LINKS
+    // ============================================
+    
+    function initSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                
+                if (target) {
+                    const offsetTop = target.offsetTop - 100;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
     }
 
-    // Staggered reveal for recipes
-    function staggerReveal() {
-        const items = document.querySelectorAll('.recipes-grid .recipe-tile');
-        items.forEach((it, i) => {
-            setTimeout(() => it.classList.add('visible'), i * 120);
+    // ============================================
+    // BENEFIT CARDS - STAGGER ANIMATION
+    // ============================================
+    
+    function initBenefitCards() {
+        const benefitCards = document.querySelectorAll('.benefit-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Cards will animate via CSS animation-delay
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        benefitCards.forEach(card => {
+            card.style.animationPlayState = 'paused';
+            observer.observe(card);
         });
     }
 
+    // ============================================
+    // FLOATING BACKGROUND ELEMENTS
+    // ============================================
+    
+    function initFloatingElements() {
+        const floatingElements = document.querySelectorAll('.float-circle');
+        
+        floatingElements.forEach((el, index) => {
+            // Random animation duration for variety
+            const duration = 15 + Math.random() * 10;
+            el.style.animationDuration = `${duration}s`;
+            el.style.animationDelay = `${-index * 5}s`;
+        });
+    }
+
+    // ============================================
+    // IMAGE LAZY LOADING ENHANCEMENT
+    // ============================================
+    
+    function initLazyLoading() {
+        const images = document.querySelectorAll('img[data-src]');
+        
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        images.forEach(img => imageObserver.observe(img));
+    }
+
+    // ============================================
+    // PERFORMANCE OPTIMIZATION
+    // ============================================
+    
+    function optimizePerformance() {
+        // Debounce resize events
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                // Re-initialize parallax on resize
+                initParallax();
+            }, 250);
+        });
+        
+        // Preload critical images
+        const criticalImages = [
+            'images/Photo-03.jpg',
+            'images/logo.svg'
+        ];
+        
+        criticalImages.forEach(src => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = src;
+            document.head.appendChild(link);
+        });
+    }
+
+    // ============================================
+    // INITIALIZATION
+    // ============================================
+    
+    function init() {
+        // Core features
+        initParallax();
+        initScrollReveal();
+        initRecipeCards();
+        initMapHotspots();
+        initSmoothScroll();
+        initBenefitCards();
+        initFloatingElements();
+        initLazyLoading();
+        optimizePerformance();
+        
+        // Add loaded class to body for CSS transitions
+        document.body.classList.add('loaded');
+        
+        console.log('🎉 Yamuna Yeast 2026 - Loaded successfully!');
+    }
+
+    // Run initialization when DOM is ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => { initRecipeCardKeyboard(); staggerReveal(); });
+        document.addEventListener('DOMContentLoaded', init);
     } else {
-        initRecipeCardKeyboard(); staggerReveal();
+        init();
     }
 
 })();

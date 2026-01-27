@@ -6,79 +6,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Дріжджі Yamuna - Маленька пачка, велика сила!</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Font Awesome for benefit icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
 </head>
 
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <aside class="hero-panel glass" aria-labelledby="hero-panel-title">
-                <img src="images/logo.svg" alt="YAMUNA Logo" />
-                <h1>Сухі швидкодіючі<br>дріжджі Ямуна</h1>
-                <p class="tagline">Маленькі гранули – велика сила!</p>
-                <a href="https://zakaz.ua/" class="cta-primary">Купити</a>
-            </aside>
+    <!-- Animated background elements -->
+    <div class="bg-decoration">
+        <div class="grain-overlay"></div>
+        <div class="floating-elements">
+            <div class="float-circle"></div>
+            <div class="float-circle"></div>
+            <div class="float-circle"></div>
+        </div>
+    </div>
+
+    <!-- Hero Section with BIGGER IMAGE -->
+    <section class="hero" data-scroll-section>
+        <div class="container">
+            <div class="hero-content-v2">
+                <!-- Text content - smaller column -->
+                <div class="hero-text-compact" data-scroll data-scroll-speed="1">
+                    <img src="images/logo.svg" alt="YAMUNA Logo" class="logo-hero" />
+                    <h1 class="hero-title">
+                        <span class="title-line">Сухі швидкодіючі</span>
+                        <span class="title-line">дріжджі Ямуна</span>
+                    </h1>
+                    <p class="hero-tagline">Маленькі гранули – велика сила!</p>
+                    <a href="https://zakaz.ua/" class="cta-btn primary-cta" target="_blank">
+                        <span>Купити зараз</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- BIGGER product image - larger column -->
+                <div class="hero-visual-large" data-scroll data-scroll-speed="1.5">
+                    <div class="product-showcase-large">
+                        <img src="images/Photo-02.jpg" alt="дріжджів Yamuna" class="product-image-large" />
+                        <div class="showcase-glow"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll indicator
+            <div class="scroll-indicator">
+                <span class="scroll-text">Прокрутіть</span>
+                <div class="scroll-line"></div>
+            </div> -->
         </div>
     </section>
 
     <!-- Problem-Solution Section -->
-    <section class="problem-solution">
+    <section class="problem-solution" data-scroll-section>
         <div class="container">
-            <h2 class="section-title red-text">Знайома проблема?<br>Щоразу хвилюєтесь, чи гарно підійде
-                тісто?</h2>
-            <div class="container-icon benefit-icon"><i class="fa-solid fa-arrow-down"></i></div>
+            <div class="section-header" data-scroll data-scroll-speed="0.5">
+                <h2 class="section-title">
+                    <span class="title-accent">Знайома проблема?</span>
+                    <span>Щоразу хвилюєтесь, чи гарно підійде тісто?</span>
+                </h2>
+                <div class="arrow-down">
+                    <i class="fa-solid fa-arrow-down"></i>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section class="benefits">
+    <!-- Benefits Section with IMAGE BLOCKS -->
+    <section class="benefits" data-scroll-section>
         <div class="container">
-            <h2 class="section-title">5 переваг дріжджів Ямуна</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
+            <h2 class="section-title" data-scroll>
+                <span class="title-number">5</span>
+                <span>переваг дріжджів Ямуна</span>
+            </h2>
+            
+            <div class="benefits-grid-v2">
+                <div class="benefit-card" data-benefit="1">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
                     <h3>Швидкодіючі</h3>
-                    <p>«Прокидаються» одразу при контакті з теплом та вогою, тому не потребують попередньої</p>
+                    <p>«Прокидаються» одразу при контакті з теплом та вологою, тому не потребують попередньої активації</p>
+                    <div class="card-decoration"></div>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+                
+                <!-- IMAGE BLOCK 1 - First position -->
+                <div class="benefit-image-block" data-benefit="2">
+                    <img src="images/Photo-12.JPG" alt="Yamuna дріжджі" />
+                </div>
+                
+                <div class="benefit-card" data-benefit="3">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
                     <h3>Стабільний підйом тіста</h3>
                     <p>Завдяки точній концентрації дріжджових клітин в кожній гранулі</p>
+                    <div class="card-decoration"></div>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-bread-slice" aria-hidden="true"></i></div>
+                
+                <div class="benefit-card" data-benefit="4">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-bread-slice"></i>
+                    </div>
                     <h3>Для будь-якої випічки</h3>
-                    <p>Піци, хліба, болочок, здоби та для пісного тіста</p>
+                    <p>Піци, хліба, булочок, здоби та для пісного тіста</p>
+                    <div class="card-decoration"></div>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-utensils" aria-hidden="true"></i></div>
+                
+                <div class="benefit-card" data-benefit="5">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
                     <h3>Зручні для дому та HoReCa</h3>
                     <p>Обирай зручний формат упаковки</p>
+                    <div class="card-decoration"></div>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-award" aria-hidden="true"></i></div>
+                
+                <!-- IMAGE BLOCK 2 - Different position -->
+                <div class="benefit-image-block" data-benefit="6">
+                    <img src="images/Photo-01.jpg" alt="Свіжа випічка" />
+                </div>
+                
+                <div class="benefit-image-block" data-benefit="6">
+                    <img src="images/Photo-05.jpg" alt="Свіжа випічка" />
+                </div>
+
+                <div class="benefit-card" data-benefit="7">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
                     <h3>Якість від українського виробника</h3>
                     <p>Контроль та гарантія якості, підтверджена сертифікатами!</p>
+                    <div class="card-decoration"></div>
                 </div>
-                <a href="https://zakaz.ua/" class="benefit-card cta-primary btn-benefit">
-                    <div class="benefit-icon white"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></div>
+                
+                <a href="https://zakaz.ua/" class="benefit-card cta-card" data-benefit="8" target="_blank">
+                    <div class="benefit-icon cta-icon">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
                     <h3>Спробувати Yamuna</h3>
+                    <div class="card-decoration bright"></div>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Video Section -->
-    <section class="video-section">
+    <section class="video-section" data-scroll-section>
         <div class="container">
-            <h2 class="section-title">Нам довіряють професіонали</h2>
-            <div class="video-grid">
-                <div class="video-card">
+            <h2 class="section-title" data-scroll>Нам довіряють професіонали</h2>
+            
+            <div class="video-container">
+                <div class="video-card" data-scroll data-scroll-speed="0.5">
                     <div class="video-thumbnail" onclick="openVideo('WHoJ4WfLuWY')">
-                        <div class="play-button"></div>
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div class="play-pulse"></div>
+                        </div>
                     </div>
                     <div class="video-info">
                         <h3>Ольга Мартиновська</h3>
@@ -89,78 +177,96 @@
         </div>
     </section>
 
-    <!-- New: 4 classic recipes with images -->
-    <section class="recipes fade-in" id="classic-recipes">
+    <!-- Recipes -->
+    <section class="recipes" data-scroll-section>
         <div class="container">
-            <h2 class="section-title">4 класичні рецепти з дріжджами Ямуна</h2>
+            <h2 class="section-title" data-scroll>
+                <span class="title-number">4</span>
+                <span>класичні рецепти з дріжджами Ямуна</span>
+            </h2>
+            
             <div class="recipes-grid">
-                <article class="recipe-tile" data-parallax tabindex="0">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img src="images/bulka.png" alt="Домашній хліб">
-                            <div class="caption">Домашній хліб</div>
-                        </div>
-                        <div class="card-back">
-                            <div class="recipe-text">
-                                <h3>Рецепт на родину з 4 осіб:</h3>
-                                <ul>
-                                    <li>500 гр борошна</li>
-                                    <li>100 гр вершкового масла</li>
-                                    <li>350 гр молока</li>
-                                    <li>150 мл вершків 30%</li>
-                                    <li>1/3 ч.л солі</li>
-                                    <li>40 гр коричневого цукру</li>
-                                    <li>3 великих яйця</li>
-                                    <li>10 гр сухих дріжджів Yamuna</li>
-                                </ul>
+                <article class="recipe-card" tabindex="0">
+                    <div class="recipe-inner">
+                        <div class="recipe-front">
+                            <div class="recipe-image">
+                                <img src="images/bulka.png" alt="Домашній хліб" />
                             </div>
+                            <h3 class="recipe-name">Домашній хліб</h3>
+                            <div class="flip-hint">
+                                <i class="fas fa-sync-alt"></i>
+                                <span>Переверніть</span>
+                            </div>
+                        </div>
+                        <div class="recipe-back">
+                            <h3>Рецепт на родину з 4 осіб:</h3>
+                            <ul class="ingredients">
+                                <li><i class="fas fa-check"></i> 500 гр борошна</li>
+                                <li><i class="fas fa-check"></i> 100 гр вершкового масла</li>
+                                <li><i class="fas fa-check"></i> 350 гр молока</li>
+                                <li><i class="fas fa-check"></i> 150 мл вершків 30%</li>
+                                <li><i class="fas fa-check"></i> 1/3 ч.л солі</li>
+                                <li><i class="fas fa-check"></i> 40 гр коричневого цукру</li>
+                                <li><i class="fas fa-check"></i> 3 великих яйця</li>
+                                <li><i class="fas fa-check"></i> 10 гр сухих дріжджів Yamuna</li>
+                            </ul>
                         </div>
                     </div>
                 </article>
 
-                <article class="recipe-tile" data-parallax tabindex="0">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img src="images/bulka.png" alt="Булочки">
-                            <div class="caption">Булочки</div>
-                        </div>
-                        <div class="card-back">
-                            <div class="recipe-text">
-                                <h3>Булочки — короткий рецепт</h3>
-                                <p>Змішайте борошно, дріжджі Yamuna, цукор, сіль та тепле молоко. Замісіть тісто.</p>
+                <article class="recipe-card" tabindex="0">
+                    <div class="recipe-inner">
+                        <div class="recipe-front">
+                            <div class="recipe-image">
+                                <img src="images/bulka.png" alt="Булочки" />
                             </div>
+                            <h3 class="recipe-name">Булочки</h3>
+                            <div class="flip-hint">
+                                <i class="fas fa-sync-alt"></i>
+                                <span>Переверніть</span>
+                            </div>
+                        </div>
+                        <div class="recipe-back">
+                            <h3>Пухкі булочки</h3>
+                            <p>Змішайте борошно, дріжджі Yamuna, цукор, сіль та тепле молоко. Замісіть еластичне тісто та залиште підходити на 40 хвилин.</p>
                         </div>
                     </div>
                 </article>
 
-                <article class="recipe-tile" data-parallax tabindex="0">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img src="images/bulka.png" alt="Піца">
-                            <div class="caption">Піца</div>
-                        </div>
-                        <div class="card-back">
-                            <div class="recipe-text">
-                                <h3>Піца — основа</h3>
-                                <p>Тісто на піцу: борошно, вода, дріжджі Yamuna, оливкова олія та сіль. Витримати 1
-                                    годину.</p>
+                <article class="recipe-card" tabindex="0">
+                    <div class="recipe-inner">
+                        <div class="recipe-front">
+                            <div class="recipe-image">
+                                <img src="images/bulka.png" alt="Піца" />
                             </div>
+                            <h3 class="recipe-name">Піца</h3>
+                            <div class="flip-hint">
+                                <i class="fas fa-sync-alt"></i>
+                                <span>Переверніть</span>
+                            </div>
+                        </div>
+                        <div class="recipe-back">
+                            <h3>Класична піца</h3>
+                            <p>Тісто на піцу: борошно, вода, дріжджі Yamuna, оливкова олія та сіль. Витримати 1 годину для ідеальної текстури.</p>
                         </div>
                     </div>
                 </article>
 
-                <article class="recipe-tile" data-parallax tabindex="0">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img src="images/bulka.png" alt="Фокача">
-                            <div class="caption">Фокача</div>
-                        </div>
-                        <div class="card-back">
-                            <div class="recipe-text">
-                                <h3>Фокача — швидко</h3>
-                                <p>Пухке тісто з додаванням великої кількості олії та морської солі для хрусткої
-                                    скоринки.</p>
+                <article class="recipe-card" tabindex="0">
+                    <div class="recipe-inner">
+                        <div class="recipe-front">
+                            <div class="recipe-image">
+                                <img src="images/bulka.png" alt="Фокача" />
                             </div>
+                            <h3 class="recipe-name">Фокача</h3>
+                            <div class="flip-hint">
+                                <i class="fas fa-sync-alt"></i>
+                                <span>Переверніть</span>
+                            </div>
+                        </div>
+                        <div class="recipe-back">
+                            <h3>Італійська фокача</h3>
+                            <p>Пухке тісто з додаванням великої кількості олії та морської солі для хрусткої золотавої скоринки.</p>
                         </div>
                     </div>
                 </article>
@@ -168,105 +274,118 @@
         </div>
     </section>
 
-    <!-- Packaging formats -->
-    <section class="packaging fade-in" id="packaging-formats">
+    <!-- Packaging formats - SIMPLIFIED, NO ANIMATIONS, VISIBLE TEXT -->
+    <section class="packaging-v2" data-scroll-section>
         <div class="container">
-            <h2 class="section-title">Показуємо 2 формати пакування: обирай зручний формат</h2>
-            <div class="pack-row">
-                <div class="pack-items">
-                    <p>1</p>
-                    <div class="pack-card small-pack">
-                        <aside class="hero-panel glass" aria-labelledby="hero-panel-title">
-                            <h3>Малий формат – для домашнього використання</h3>
-                            <p style="color: var(--white);">Ідеально підходить для сімейної випічки та разового використання — зберігає свіжість і
-                                активність
-                                дріжджів.</p>
-                        </aside>
+            <h2 class="section-title" data-scroll>Обирай зручний формат</h2>
+            
+            <div class="packaging-simple">
+                <div class="pack-item">
+                    <img src="images/Photo-03.jpg" alt="Малий формат" />
+                    <div class="pack-info">
+                        <div class="pack-badge-simple">Для дому</div>
+                        <h3>Малий формат</h3>
+                        <p class="pack-description">Ідеально для сімейної випічки та разового використання — зберігає свіжість і активність дріжджів</p>
                     </div>
                 </div>
-                <div class="pack-items">
-                    <p>2</p>
-                    <div class="pack-card big-pack">
-                        <aside class="hero-panel glass" aria-labelledby="hero-panel-title">
-                            <h3 style="color: var(--white);">100 г – професійний формат</h3>
-                            <p style="color: var(--white);">Концентрованіше пакування для пекарень, кафе та професіоналів — зручна доза для серійного
-                                випікання.</p>
-                        </aside>
+
+                <div class="pack-item featured-simple">
+                    <div class="pack-visual-simple">
+                        <img src="images/big-pack-hor.JPG" alt="Великий формат" />
+                    </div>
+                    <div class="pack-info">
+                        <div class="pack-badge-simple professional">Професійний</div>
+                        <h3>Формат 100г</h3>
+                        <p class="pack-description">Концентроване пакування для пекарень, кафе та професіоналів — зручна доза для серійного випікання</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive SVG map (Map_of_Ukraine.svg) - hotspots injected from hotspots.json -->
-    <section class="interactive-map fade-in" id="partners-map">
+    <!-- Interactive Map -->
+    <section class="interactive-map" data-scroll-section>
         <div class="container">
-            <h2 class="section-title">Наші представництва на мапі</h2>
-            <div class="svg-map-wrapper">
-                <object id="svgMap" data="images/Map_of_Ukraine.svg" type="image/svg+xml" class="svg-map"
-                    aria-label="Карта України"></object>
-                <div id="mapOverlay" class="map-overlay" aria-hidden="false"></div>
+            <h2 class="section-title" data-scroll>Наші представництва на мапі</h2>
+            <div class="map-wrapper">
+                <object id="svgMap" data="images/Map_of_Ukraine.svg" type="image/svg+xml" class="svg-map"></object>
+                <div id="mapOverlay" class="map-overlay"></div>
             </div>
         </div>
     </section>
 
-    <!-- Recipe Section -->
-    <section class="recipe-section">
-        <div class="container hero-panel glass">
-            <h2 class="section-title">Спеціальна пропозиція</h2>
-            <div class="recipe-card">
-                <div>
-                    <h3><i class="fa-solid fa-gift"></i> Бонус</h3>
-                    <p>Секрети дріжджового тіста</p>
-                    <p>
-                        <i class="fa-solid fa-check"></i> Паски традиційні<br>
-                        <i class="fa-solid fa-check"></i> Фокача<br>
-                        <i class="fa-solid fa-check"></i> Булочки святкові<br>
-                    </p>
-                    <a href="#" class="cta-secondary" onclick="downloadChecklist(event)">Завантажити</a>
+    <!-- Special Offer -->
+    <section class="special-offer" data-scroll-section>
+        <div class="container">
+            <div class="offer-card" data-scroll data-scroll-speed="0.5">
+                <div class="offer-icon">
+                    <i class="fa-solid fa-gift"></i>
                 </div>
-                <a class="pdf-btn"><i class="fa-solid fa-file-pdf"></i></a>
+                <div class="offer-content">
+                    <h2>Спеціальна пропозиція</h2>
+                    <h3>Секрети дріжджового тіста</h3>
+                    <ul class="offer-list">
+                        <li><i class="fa-solid fa-check"></i> Паски традиційні</li>
+                        <li><i class="fa-solid fa-check"></i> Фокача</li>
+                        <li><i class="fa-solid fa-check"></i> Булочки святкові</li>
+                    </ul>
+                    <button id="downloadChecklist" class="cta-btn secondary-cta">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Завантажити рецепти</span>
+                    </button>
+                </div>
+                <div class="offer-visual">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="benefits">
+    <!-- Testimonials -->
+    <section class="testimonials" data-scroll-section>
         <div class="container">
-            <h2 class="section-title">Що кажуть наші покупці</h2>
+            <h2 class="section-title" data-scroll>Що кажуть наші покупці</h2>
+            
             <div class="testimonial-slider">
-                <div class="testimonial">
+                <div class="testimonial-card">
                     <div class="testimonial-avatar">👩‍🍳</div>
-                    <p class="testimonial-text">"Пекла паску на Великдень - вийшла просто казка! Тісто піднялося
-                        ідеально, структура пухка. Тепер тільки Yamuna!"</p>
+                    <p class="testimonial-text">"Пекла паску на Великдень - вийшла просто казка! Тісто піднялося ідеально, структура пухка. Тепер тільки Yamuna!"</p>
                     <p class="testimonial-author">Олена К., Київ</p>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Final CTA -->
-    <section class="final-cta">
+    <section class="final-cta" data-scroll-section>
         <div class="container">
-            <h2>Про бренд Ямуна</h2>
-            <p>Виробник спецій та кондитерських додатків – більше кондитреських додатків і спецій у нас на сайті</p>
-            <a href="https://yamuna.ua/" class="cta-white" target="_blank">Замовити спецій Yamuna</a>
-
-            <!-- Social links -->
-            <div class="social-links">
-                <a href="https://www.instagram.com/yamuna.spices/" target="_blank" rel="noopener"
-                    aria-label="Yamuna Instagram" class="social-badge">
-                    <i class="fa-brands fa-instagram"></i>
+            <div class="cta-content">
+                <h2>Про бренд Ямуна</h2>
+                <p>Виробник спецій та кондитерських додатків. Більше продуктів на нашому сайті</p>
+                
+                <a href="https://yamuna.ua/" class="cta-btn white-cta" target="_blank">
+                    <span>Замовити спеції Yamuna</span>
+                    <i class="fas fa-external-link-alt"></i>
                 </a>
-
-                <a href="https://www.facebook.com/yamuna.spices/" target="_blank" rel="noopener"
-                    aria-label="Yamuna Facebook" class="social-badge">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-
-                <a href="https://www.youtube.com/@Priano-duhmiano" target="_blank" rel="noopener"
-                    aria-label="Yamuna YouTube" class="social-badge">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
+                
+                <div class="social-links">
+                    <a href="https://www.instagram.com/yamuna.spices/" target="_blank" class="social-link" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/yamuna.spices/" target="_blank" class="social-link" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@Priano-duhmiano" target="_blank" class="social-link" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -274,24 +393,29 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 МПП фірма "Ямуна". Всі права захищені.</p>
-            <p style="margin-top: 10px;">
-                <a href="https://yamuna.ua/contact-us/" target="_blank">Контакти</a> |
-                <a href="tel:+380673642033">+38 067 364 20 33</a> |
-                <a href="mailto:info@yamuna.ua">info@yamuna.ua</a>
-            </p>
+            <div class="footer-content">
+                <p>&copy; 2026 МПП фірма "Ямуна". Всі права захищені.</p>
+                <div class="footer-links">
+                    <a href="https://yamuna.ua/contact-us/" target="_blank">Контакти</a>
+                    <span class="separator">|</span>
+                    <a href="tel:+380673642033">+38 067 364 20 33</a>
+                    <span class="separator">|</span>
+                    <a href="mailto:info@yamuna.ua">info@yamuna.ua</a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- Video Modal -->
     <div id="videoModal" class="modal">
+        <div class="modal-backdrop" onclick="closeVideo()"></div>
         <div class="modal-content">
-            <span class="close-modal" onclick="closeVideo()">&times;</span>
+            <button class="modal-close" onclick="closeVideo()" aria-label="Закрити">
+                <i class="fas fa-times"></i>
+            </button>
             <iframe id="videoFrame" src="" allowfullscreen></iframe>
         </div>
     </div>
-
-    <!-- Inline behaviour moved to script.js -->
 
 </body>
 
