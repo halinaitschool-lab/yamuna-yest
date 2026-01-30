@@ -59,6 +59,10 @@ body {
     overflow-x: hidden;
     position: relative;
 }
+.development {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
 
 /* === BACKGROUND DECORATION === */
 .bg-decoration {
@@ -124,7 +128,7 @@ body {
 
 /* === TYPOGRAPHY === */
 h1, h2, h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-weight: 900;
     line-height: 1.1;
 }
@@ -447,6 +451,8 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: var(--space-md);
+    align-items: stretch;        /* ensure children stretch to same row height */
+    grid-auto-rows: 1fr;        /* make all rows equal height */
 }
 
 .benefit-card {
@@ -461,7 +467,8 @@ section {
     transform: translateY(30px);
     animation: staggerFadeIn 0.6s ease-out forwards;
     text-decoration: none;
-    display: block;
+    display: flex;              /* make card stretch and layout reliably */
+    flex-direction: column;
 }
 
 /* Image blocks in benefits section */
@@ -470,35 +477,38 @@ section {
     border-radius: var(--radius-md);
     overflow: hidden;
     position: relative;
-    aspect-ratio: 1;
+    /* allow grid to control height, remove aspect-ratio */
     opacity: 0;
     transform: translateY(30px);
     animation: staggerFadeIn 0.6s ease-out forwards;
+    display: block;
+    min-height: 445px; 
+    height: 500px;         
 }
 
 .benefit-image-block img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;          /* cover so image fills block */
     transition: var(--transition-smooth);
+    display: block;
 }
 
+/* make hover scale smoother */
 .benefit-image-block:hover img {
-    transform: scale(1.1);
+    transform: scale(1.06);
 }
 
-.image-badge {
-    position: absolute;
-    bottom: var(--space-md);
-    left: var(--space-md);
-    right: var(--space-md);
-    background: rgba(227, 0, 15, 0.95);
-    color: var(--white);
-    padding: var(--space-sm) var(--space-md);
-    border-radius: var(--radius-sm);
-    font-weight: 700;
-    text-align: center;
-    backdrop-filter: blur(10px);
+/* Responsive: stack on small screens and set sensible image height */
+@media (max-width: 700px) {
+    .benefits-grid-v2 {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+
+    .benefit-image-block {
+        height: 260px; /* fixed mobile block height for visual balance */
+    }
 }
 
 .benefit-card[data-benefit="1"] { animation-delay: 0.1s; }
@@ -956,7 +966,7 @@ section {
     font-weight: 900;
     color: var(--brand-red);
     margin: var(--space-sm) 0;
-    font-family: var(--font-display);
+    font-family: var(--font-body);
 }
 
 .pack-description {
