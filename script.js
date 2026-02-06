@@ -9,22 +9,22 @@
     // ============================================
     // SMOOTH PARALLAX SCROLL EFFECTS
     // ============================================
-    
+
     function initParallax() {
         const parallaxElements = document.querySelectorAll('[data-scroll]');
-        
+
         if (!parallaxElements.length) return;
-        
+
         const handleScroll = () => {
             const scrollY = window.pageYOffset;
-            
+
             parallaxElements.forEach(el => {
                 const speed = el.dataset.scrollSpeed || 1;
                 const rect = el.getBoundingClientRect();
                 const elementTop = rect.top + scrollY;
                 const elementHeight = rect.height;
                 const viewportHeight = window.innerHeight;
-                
+
                 // Only apply parallax when element is in viewport
                 if (scrollY + viewportHeight > elementTop && scrollY < elementTop + elementHeight) {
                     const distance = scrollY - elementTop;
@@ -33,7 +33,7 @@
                 }
             });
         };
-        
+
         // Throttle scroll event for performance
         let ticking = false;
         window.addEventListener('scroll', () => {
@@ -45,20 +45,20 @@
                 ticking = true;
             }
         });
-        
+
         handleScroll(); // Initial call
     }
 
     // ============================================
     // INTERSECTION OBSERVER - REVEAL ON SCROLL
     // ============================================
-    
+
     function initScrollReveal() {
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -67,7 +67,7 @@
                 }
             });
         }, observerOptions);
-        
+
         // Observe section titles and major elements
         document.querySelectorAll('.section-title, .benefit-card, .recipe-card, .pack-card').forEach(el => {
             observer.observe(el);
@@ -75,70 +75,26 @@
     }
 
     // ============================================
-    // VIDEO MODAL
-    // ============================================
-    
-    const modal = document.getElementById('videoModal');
-    const iframe = document.getElementById('videoFrame');
-
-    window.openVideo = function (videoId) {
-        if (!iframe || !modal) return;
-        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-        
-        // Animate modal
-        setTimeout(() => {
-            modal.style.opacity = '1';
-        }, 10);
-    };
-
-    window.closeVideo = function () {
-        if (!iframe || !modal) return;
-        modal.style.opacity = '0';
-        setTimeout(() => {
-            iframe.src = '';
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-        }, 300);
-    };
-
-    // Modal click handlers
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal || e.target.classList.contains('modal-backdrop')) {
-                window.closeVideo();
-            }
-        });
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.style.display === 'flex') {
-                window.closeVideo();
-            }
-        });
-    }
-
-    // ============================================
     // DOWNLOAD CHECKLIST
     // ============================================
-    
+
     const downloadBtn = document.getElementById('downloadChecklist');
     if (downloadBtn) {
         downloadBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            
+
             // Add loading state
             const originalText = downloadBtn.innerHTML;
             downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Завантаження...</span>';
             downloadBtn.disabled = true;
-            
+
             setTimeout(() => {
                 // Success message
                 downloadBtn.innerHTML = '<i class="fas fa-check"></i> <span>Готово!</span>';
-                
+
                 // Alert with recipe info
                 alert('🎉 Чеклист успішно завантажено!\n\n📋 Що всередині:\n✓ 15 перевірених рецептів\n✓ Покрокові інструкції\n✓ Професійні поради\n✓ Таблиця мір\n\nДякуємо, що обрали Yamuna!');
-                
+
                 // Reset button
                 setTimeout(() => {
                     downloadBtn.innerHTML = originalText;
@@ -151,7 +107,7 @@
     // ============================================
     // RECIPE CARDS - KEYBOARD NAVIGATION
     // ============================================
-    
+
     function initRecipeCards() {
         document.querySelectorAll('.recipe-card').forEach(card => {
             // Keyboard support
@@ -159,25 +115,25 @@
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     card.classList.toggle('is-flipped');
-                    card.querySelector('.recipe-inner').style.transform = 
+                    card.querySelector('.recipe-inner').style.transform =
                         card.classList.contains('is-flipped') ? 'rotateY(180deg)' : '';
                 }
             });
-            
+
             // Touch support for mobile
             let touchStartY = 0;
             card.addEventListener('touchstart', (e) => {
                 touchStartY = e.touches[0].clientY;
             });
-            
+
             card.addEventListener('touchend', (e) => {
                 const touchEndY = e.changedTouches[0].clientY;
                 const diff = Math.abs(touchEndY - touchStartY);
-                
+
                 // Only flip if it's a tap, not a scroll
                 if (diff < 10) {
                     card.classList.toggle('is-flipped');
-                    card.querySelector('.recipe-inner').style.transform = 
+                    card.querySelector('.recipe-inner').style.transform =
                         card.classList.contains('is-flipped') ? 'rotateY(180deg)' : '';
                 }
             });
@@ -187,7 +143,7 @@
     // ============================================
     // TESTIMONIAL ROTATION
     // ============================================
-    
+
     const testimonials = [
         {
             avatar: '👩‍🍳',
@@ -211,26 +167,26 @@
 
     function rotateTestimonials() {
         if (!testimonialCard) return;
-        
+
         currentTestimonial = (currentTestimonial + 1) % testimonials.length;
         const testimonial = testimonials[currentTestimonial];
 
         // Fade out
         testimonialCard.style.opacity = '0';
         testimonialCard.style.transform = 'translateY(20px)';
-        
+
         setTimeout(() => {
             // Update content
             const avatarEl = testimonialCard.querySelector('.testimonial-avatar');
             const textEl = testimonialCard.querySelector('.testimonial-text');
             const authorEl = testimonialCard.querySelector('.testimonial-author');
-            
+
             if (avatarEl && textEl && authorEl) {
                 avatarEl.textContent = testimonial.avatar;
                 textEl.textContent = `"${testimonial.text}"`;
                 authorEl.textContent = testimonial.author;
             }
-            
+
             // Fade in
             setTimeout(() => {
                 testimonialCard.style.opacity = '1';
@@ -247,11 +203,11 @@
     // ============================================
     // MAP HOTSPOTS
     // ============================================
-    
+
     function initMapHotspots() {
         const svgObject = document.getElementById('svgMap');
         const overlay = document.getElementById('mapOverlay');
-        
+
         if (!svgObject || !overlay) return;
 
         // Wait for SVG to load
@@ -267,10 +223,10 @@
                         btn.style.left = hotspot.left;
                         btn.style.top = hotspot.top;
                         btn.textContent = hotspot.name;
-                        
+
                         // Tooltip on hover
                         btn.title = hotspot.message;
-                        
+
                         overlay.appendChild(btn);
                     });
                 })
@@ -281,16 +237,16 @@
     // ============================================
     // SMOOTH SCROLL FOR ANCHOR LINKS
     // ============================================
-    
+
     function initSmoothScroll() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 if (href === '#') return;
-                
+
                 e.preventDefault();
                 const target = document.querySelector(href);
-                
+
                 if (target) {
                     const offsetTop = target.offsetTop - 100;
                     window.scrollTo({
@@ -305,10 +261,10 @@
     // ============================================
     // BENEFIT CARDS - STAGGER ANIMATION
     // ============================================
-    
+
     function initBenefitCards() {
         const benefitCards = document.querySelectorAll('.benefit-card');
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -318,7 +274,7 @@
                 }
             });
         }, { threshold: 0.2 });
-        
+
         benefitCards.forEach(card => {
             card.style.animationPlayState = 'paused';
             observer.observe(card);
@@ -328,10 +284,10 @@
     // ============================================
     // FLOATING BACKGROUND ELEMENTS
     // ============================================
-    
+
     function initFloatingElements() {
         const floatingElements = document.querySelectorAll('.float-circle');
-        
+
         floatingElements.forEach((el, index) => {
             // Random animation duration for variety
             const duration = 15 + Math.random() * 10;
@@ -343,10 +299,10 @@
     // ============================================
     // IMAGE LAZY LOADING ENHANCEMENT
     // ============================================
-    
+
     function initLazyLoading() {
         const images = document.querySelectorAll('img[data-src]');
-        
+
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -357,14 +313,14 @@
                 }
             });
         });
-        
+
         images.forEach(img => imageObserver.observe(img));
     }
 
     // ============================================
     // PERFORMANCE OPTIMIZATION
     // ============================================
-    
+
     function optimizePerformance() {
         // Debounce resize events
         let resizeTimer;
@@ -375,13 +331,13 @@
                 initParallax();
             }, 250);
         });
-        
+
         // Preload critical images
         const criticalImages = [
             'images/Photo-03.jpg',
             'images/logo.svg'
         ];
-        
+
         criticalImages.forEach(src => {
             const link = document.createElement('link');
             link.rel = 'preload';
@@ -394,7 +350,7 @@
     // ============================================
     // INITIALIZATION
     // ============================================
-    
+
     function init() {
         // Core features
         initParallax();
@@ -406,10 +362,12 @@
         initFloatingElements();
         initLazyLoading();
         optimizePerformance();
-        
+        initRecipeAccordion();
+        initRecipeVideoAutoplay();
+
         // Add loaded class to body for CSS transitions
         document.body.classList.add('loaded');
-        
+
         console.log('🎉 Yamuna Yeast 2026 - Loaded successfully!');
     }
 
@@ -418,6 +376,90 @@
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
+    }
+
+    // ============================================
+    // RECIPE ACCORDION - FIXED
+    // ============================================
+
+    function initRecipeAccordion() {
+        const accordionItems = document.querySelectorAll('.recipe-accordion-item');
+
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.recipe-accordion-header');
+
+            if (!header) return;
+
+            header.addEventListener('click', () => {
+                const isOpen = item.classList.contains('active');
+
+                // Закрити всі інші акордеони в тій же секції
+                const parentSection = item.closest('.recipes-desktop, .recipes-mobile');
+                if (parentSection) {
+                    parentSection.querySelectorAll('.recipe-accordion-item').forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            const otherHeader = otherItem.querySelector('.recipe-accordion-header');
+                            if (otherHeader) {
+                                otherHeader.setAttribute('aria-expanded', 'false');
+                            }
+                        }
+                    });
+                }
+
+                // Toggle поточний акордеон
+                item.classList.toggle('active');
+                header.setAttribute('aria-expanded', !isOpen);
+
+                // Auto-scroll при відкритті
+                if (!isOpen) {
+                    setTimeout(() => {
+                        const rect = header.getBoundingClientRect();
+                        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                        const targetScroll = rect.top + scrollTop - 120;
+
+                        window.scrollTo({
+                            top: targetScroll,
+                            behavior: 'smooth'
+                        });
+                    }, 400);
+                }
+            });
+
+            // Keyboard support
+            header.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    header.click();
+                }
+            });
+        });
+    }
+
+    // ============================================
+    // RECIPE VIDEO AUTO-PLAY
+    // ============================================
+
+    function initRecipeVideoAutoplay() {
+        const videoWrapper = document.querySelector('.recipe-video-wrapper');
+        const video = videoWrapper ? videoWrapper.querySelector('video') : null;
+
+        if (!video) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.play().catch(e => console.warn('Autoplay failed:', e));
+                    } else {
+                        video.pause();
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        observer.observe(videoWrapper);
     }
 
 })();

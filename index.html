@@ -36,6 +36,26 @@
     <!-- Referrer policy (безпека) -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '873830185435888');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=873830185435888&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+
 </head>
 
 <body>
@@ -61,7 +81,8 @@
                         <span class="title-line">дріжджі Ямуна</span>
                     </h1>
                     <p class="hero-tagline">Маленькі гранули – велика сила!</p>
-                    <a href="https://zakaz.ua/" class="cta-btn primary-cta" target="_blank">
+                    <a href="https://yamuna.in.ua/ua/g76975626-konditerska-grupa" class="cta-btn primary-cta"
+                        target="_blank" onclick="fbq('track', 'Contact');">
                         <span>Купити</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -75,12 +96,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Scroll indicator
-            <div class="scroll-indicator">
-                <span class="scroll-text">Прокрутіть</span>
-                <div class="scroll-line"></div>
-            </div> -->
         </div>
     </section>
 
@@ -168,7 +183,8 @@
                     <div class="card-decoration"></div>
                 </div>
 
-                <a href="https://zakaz.ua/" class="benefit-card cta-card" data-benefit="8" target="_blank">
+                <a href="https://yamuna.in.ua/ua/g76975626-konditerska-grupa" class="benefit-card cta-card"
+                    data-benefit="8" target="_blank" onclick="fbq('track', 'Contact');">
                     <div class="benefit-icon cta-icon">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </div>
@@ -179,131 +195,221 @@
         </div>
     </section>
 
-    <!-- Video Section -->
-    <section class="video-section" data-scroll-section>
+    <!-- Recipes -->
+    <section class="recipes" data-scroll-section>
         <div class="container">
-            <h2 class="section-title" data-scroll>Нам довіряють професіонали</h2>
+            <h2 class="section-title" data-scroll>
+                <span class="title-number">5</span>
+                <span>рецептів з дріжджами Ямуна</span>
+            </h2>
 
-            <div class="video-container">
-                <div class="video-card" data-scroll data-scroll-speed="0.5">
-                    <div class="video-thumbnail" onclick="openVideo('WHoJ4WfLuWY')">
-                        <div class="play-overlay">
-                            <div class="play-button">
-                                <i class="fas fa-play"></i>
+            <!-- DESKTOP VERSION: Video left + Accordion right -->
+            <div class="recipes-desktop">
+                <div class="recipes-video-column">
+                    <div class="recipe-video-wrapper">
+                        <video controls playsinline muted preload="metadata" poster="images/yeast.jpg"
+                            aria-label="Відео: Колач з дріжджами Yamuna">
+                            <source src="images/kolach.mp4" type="video/mp4">
+                            Ваш браузер не підтримує відео.
+                        </video>
+                        <div class="video-title">Колач з дріжджами Yamuna</div>
+                    </div>
+                </div>
+
+                <div class="recipes-accordion-column">
+                    <!-- Recipe 1 -->
+                    <div class="recipe-accordion-item">
+                        <button class="recipe-accordion-header" aria-expanded="false">
+                            <div class="recipe-header-content">
+                                <img src="images/bulka.png" alt="Хліб з дріжджами Ямуна" />
+                                <h3>Хліб з дріжджами Ямуна</h3>
                             </div>
-                            <div class="play-pulse"></div>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </button>
+                        <div class="recipe-accordion-body">
+                            <div class="recipe-section">
+                                <h4>Інгредієнти:</h4>
+                                <ul class="ingredients-list">
+                                    <li>Борошно — 500 г</li>
+                                    <li>Тепла вода — 300 мл</li>
+                                    <li>Сухі дріжджі Ямуна — 7 г</li>
+                                    <li>Цукор — 1 ст. л.</li>
+                                    <li>Сіль — 1 ч. л.</li>
+                                    <li>Насіння льону — 1,5 ст. л.</li>
+                                    <li>Рослинна олія — 2 ст. л.</li>
+                                </ul>
+                            </div>
+                            <div class="recipe-section">
+                                <h4>Приготування:</h4>
+                                <p>Змішати сухі інгредієнти, додати воду та олію. Замісити тісто (7–10 хв). Залишити в
+                                    теплому місці на 1 годину. Обім'яти, дати піднятися ще 30 хв. Сформувати хліб,
+                                    залишити на 30 хв. Випікати при 230 °C 30–40 хв.</p>
+                            </div>
+                            <a href="https://youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank"
+                                class="recipe-youtube-btn" onclick="fbq('track', 'ViewContent');">
+                                <i class="fab fa-instagram"></i> Дивитись покроковий відео рецепт
+                            </a>
                         </div>
                     </div>
-                    <div class="video-info">
-                        <h3>Ольга Мартиновська</h3>
-                        <p>Суддя МайстерШеф розповідає про секрети ідеальної випічки з дріжджами Yamuna</p>
+
+                    <!-- Recipe 2 -->
+                    <div class="recipe-accordion-item">
+                        <button class="recipe-accordion-header" aria-expanded="false">
+                            <div class="recipe-header-content">
+                                <img src="images/bulka.png" alt="Пиріжки з капустою" />
+                                <h3>Пиріжки з капустою</h3>
+                            </div>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </button>
+                        <div class="recipe-accordion-body">
+                            <div class="recipe-section">
+                                <h4>Начинка:</h4>
+                                <ul class="ingredients-list">
+                                    <li>Білокачанна капуста — 500 г</li>
+                                    <li>Квашена капуста — 300 г</li>
+                                    <li>Цибуля — 1 шт.</li>
+                                    <li>Морква — 1 шт.</li>
+                                    <li>Томатна паста — 1–2 ст. л.</li>
+                                    <li>Сіль, перець, лавровий лист — за смаком</li>
+                                </ul>
+                            </div>
+                            <div class="recipe-section">
+                                <h4>➕ Тісто:</h4>
+                                <ul class="ingredients-list">
+                                    <li>Сухі дріжджі Ямуна — 11 г</li>
+                                    <li>Борошно — 3,5 склянки + для підпилу</li>
+                                    <li>Тепла вода — 250 мл</li>
+                                    <li>Кип'яток — 250 мл</li>
+                                    <li>Цукор — 1 ст. л.</li>
+                                    <li>Сіль — 1 ч. л.</li>
+                                    <li>Олія — 3 ст. л.</li>
+                                </ul>
+                            </div>
+                            <div class="recipe-section">
+                                <h4>Приготування:</h4>
+                                <p>Для начинки обсмажити овочі та тушкувати до готовності. Для тіста змішати всі
+                                    інгредієнти, замісити м'яке тісто. Сформувати пиріжки з начинкою. Смажити або
+                                    випікати до золотистості.</p>
+                            </div>
+                            <a href="https://youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank"
+                                class="recipe-youtube-btn" onclick="fbq('track', 'ViewContent');">
+                                <i class="fab fa-instagram"></i> Дивитись покроковий відео рецепт
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Recipe 3 -->
+                    <div class="recipe-accordion-item">
+                        <button class="recipe-accordion-header" aria-expanded="false">
+                            <div class="recipe-header-content">
+                                <img src="images/bulka.png" alt="Фокача з сушеними травами" />
+                                <h3>Фокача з сушеними травами</h3>
+                            </div>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </button>
+                        <div class="recipe-accordion-body">
+                            <div class="recipe-section">
+                                <h4>Інгредієнти:</h4>
+                                <ul class="ingredients-list">
+                                    <li>Борошно — 500 г</li>
+                                    <li>Вода — 350 г</li>
+                                    <li>Сіль — 9 г</li>
+                                    <li>Цукор — 20 г</li>
+                                    <li>Сухі дріжджі Ямуна — 3 г</li>
+                                    <li>Оливкова олія — 40 г</li>
+                                    <li>Сушені трави — за смаком</li>
+                                </ul>
+                            </div>
+                            <div class="recipe-section">
+                                <h4>Приготування:</h4>
+                                <p>Змішати борошно і дріжджі. Воду з'єднати з сіллю, цукром та олією, влити в борошно.
+                                    Замісити тісто, залишити на 30 хв. Обім'яти і дати піднятися 2–2,5 год. Перекласти у
+                                    форму, залишити на 30 хв. Випікати при максимальній температурі ~30 хв.</p>
+                            </div>
+                            <a href="https://youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank"
+                                class="recipe-youtube-btn" onclick="fbq('track', 'ViewContent');">
+                                <i class="fab fa-instagram"></i> Дивитись покроковий відео рецепт
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Recipe 4 -->
+                    <div class="recipe-accordion-item">
+                        <button class="recipe-accordion-header" aria-expanded="false">
+                            <div class="recipe-header-content">
+                                <img src="images/bulka.png" alt="Тісто для піци" />
+                                <h3>Тісто для піци</h3>
+                            </div>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </button>
+                        <div class="recipe-accordion-body">
+                            <div class="recipe-section">
+                                <h4>Інгредієнти (на 2 піци):</h4>
+                                <ul class="ingredients-list">
+                                    <li>Сухі дріжджі Ямуна — 5 г</li>
+                                    <li>Цукор — 2 ст. л.</li>
+                                    <li>Борошно — 75 г (для опари) + 300 г</li>
+                                    <li>Тепла вода — 220 мл</li>
+                                    <li>Тепле молоко — 50 мл</li>
+                                    <li>Сіль — 0,5 ч. л.</li>
+                                    <li>Оливкова олія — 1 ст. л.</li>
+                                </ul>
+                            </div>
+                            <div class="recipe-section">
+                                <h4>Приготування:</h4>
+                                <p>Змішати інгредієнти для опари, залишити на 15–20 хв. Додати решту інгредієнтів,
+                                    замісити тісто. Дати піднятися 1 год. Поділити на 2 частини, сформувати основу,
+                                    додати начинку. Випікати при 250 °C 10–15 хв.</p>
+                            </div>
+                            <a href="https://youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank"
+                                class="recipe-youtube-btn" onclick="fbq('track', 'ViewContent');">
+                                <i class="fab fa-instagram"></i> Дивитись покроковий відео рецепт
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Recipe 5 -->
+                    <div class="recipe-accordion-item">
+                        <button class="recipe-accordion-header" aria-expanded="false">
+                            <div class="recipe-header-content">
+                                <img src="images/bulka.png" alt="Бельгійські вафлі" />
+                                <h3>Бельгійські вафлі</h3>
+                            </div>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </button>
+                        <div class="recipe-accordion-body">
+                            <div class="recipe-section">
+                                <h4>Інгредієнти:</h4>
+                                <ul class="ingredients-list">
+                                    <li>Борошно — 500 г</li>
+                                    <li>Вершкове масло — 100 г</li>
+                                    <li>Молоко — 350 мл</li>
+                                    <li>Вершки 30% — 150 мл</li>
+                                    <li>Яйця — 3–4 шт.</li>
+                                    <li>Коричневий цукор — 40 г</li>
+                                    <li>Сіль — 1/3 ч. л.</li>
+                                    <li>Сухі дріжджі Ямуна — 10 г</li>
+                                    <li>Ваніль — за смаком</li>
+                                    <li>Ром — 4 ст. л. (за бажанням)</li>
+                                </ul>
+                            </div>
+                            <div class="recipe-section">
+                                <h4>Приготування:</h4>
+                                <p>Змішати рідкі інгредієнти з яйцями та маслом. Окремо з'єднати сухі інгредієнти.
+                                    Замісити тісто до однорідності, залишити на 40–60 хв. За бажанням додати ром.
+                                    Випікати у вафельниці 3–4 хв.</p>
+                            </div>
+                            <a href="https://youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank"
+                                class="recipe-youtube-btn" onclick="fbq('track', 'ViewContent');">
+                                <i class="fab fa-instagram"></i> Дивитись покроковий відео рецепт
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Recipes -->
-    <section class="recipes" data-scroll-section>
-        <div class="container">
-            <h2 class="section-title" data-scroll>
-                <span class="title-number">4</span>
-                <span>класичні рецепти з дріжджами Ямуна</span>
-            </h2>
-
-            <div class="recipes-grid">
-                <article class="recipe-card" tabindex="0">
-                    <div class="recipe-inner">
-                        <div class="recipe-front">
-                            <div class="recipe-image">
-                                <img src="images/bulka.png" alt="Домашній хліб" />
-                            </div>
-                            <h3 class="recipe-name">Домашній хліб</h3>
-                            <div class="flip-hint">
-                                <i class="fas fa-sync-alt"></i>
-                                <span>Переверніть</span>
-                            </div>
-                        </div>
-                        <div class="recipe-back">
-                            <h3>Рецепт на родину з 4 осіб:</h3>
-                            <ul class="ingredients">
-                                <li><i class="fas fa-check"></i> 500 гр борошна</li>
-                                <li><i class="fas fa-check"></i> 100 гр вершкового масла</li>
-                                <li><i class="fas fa-check"></i> 350 гр молока</li>
-                                <li><i class="fas fa-check"></i> 150 мл вершків 30%</li>
-                                <li><i class="fas fa-check"></i> 1/3 ч.л солі</li>
-                                <li><i class="fas fa-check"></i> 40 гр коричневого цукру</li>
-                                <li><i class="fas fa-check"></i> 3 великих яйця</li>
-                                <li><i class="fas fa-check"></i> 10 гр сухих дріжджів Yamuna</li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="recipe-card" tabindex="0">
-                    <div class="recipe-inner">
-                        <div class="recipe-front">
-                            <div class="recipe-image">
-                                <img src="images/bulka.png" alt="Булочки" />
-                            </div>
-                            <h3 class="recipe-name">Булочки</h3>
-                            <div class="flip-hint">
-                                <i class="fas fa-sync-alt"></i>
-                                <span>Переверніть</span>
-                            </div>
-                        </div>
-                        <div class="recipe-back">
-                            <h3>Пухкі булочки</h3>
-                            <p>Змішайте борошно, дріжджі Yamuna, цукор, сіль та тепле молоко. Замісіть еластичне тісто
-                                та залиште підходити на 40 хвилин.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="recipe-card" tabindex="0">
-                    <div class="recipe-inner">
-                        <div class="recipe-front">
-                            <div class="recipe-image">
-                                <img src="images/bulka.png" alt="Піца" />
-                            </div>
-                            <h3 class="recipe-name">Піца</h3>
-                            <div class="flip-hint">
-                                <i class="fas fa-sync-alt"></i>
-                                <span>Переверніть</span>
-                            </div>
-                        </div>
-                        <div class="recipe-back">
-                            <h3>Класична піца</h3>
-                            <p>Тісто на піцу: борошно, вода, дріжджі Yamuna, оливкова олія та сіль. Витримати 1 годину
-                                для ідеальної текстури.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="recipe-card" tabindex="0">
-                    <div class="recipe-inner">
-                        <div class="recipe-front">
-                            <div class="recipe-image">
-                                <img src="images/bulka.png" alt="Фокача" />
-                            </div>
-                            <h3 class="recipe-name">Фокача</h3>
-                            <div class="flip-hint">
-                                <i class="fas fa-sync-alt"></i>
-                                <span>Переверніть</span>
-                            </div>
-                        </div>
-                        <div class="recipe-back">
-                            <h3>Італійська фокача</h3>
-                            <p>Пухке тісто з додаванням великої кількості олії та морської солі для хрусткої золотавої
-                                скоринки.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Packaging formats - SIMPLIFIED, NO ANIMATIONS, VISIBLE TEXT -->
     <section class="packaging-v2" data-scroll-section>
         <div class="container">
             <h2 class="section-title" data-scroll>Обирай зручний формат</h2>
@@ -360,7 +466,7 @@
                         <li><i class="fa-solid fa-check"></i> Фокача</li>
                         <li><i class="fa-solid fa-check"></i> Булочки святкові</li>
                     </ul>
-                    <button id="downloadChecklist" class="cta-btn secondary-cta">
+                    <button id="downloadChecklist" class="cta-btn secondary-cta" onclick="fbq('track', 'Lead');">
                         <i class="fa-solid fa-download"></i>
                         <span>Завантажити рецепти</span>
                     </button>
@@ -402,22 +508,22 @@
                 <h2>Про бренд Ямуна</h2>
                 <p>Виробник спецій та кондитерських додатків. Більше продуктів на нашому сайті</p>
 
-                <a href="https://yamuna.ua/" class="cta-btn white-cta" target="_blank">
+                <a href="https://yamuna.in.ua/ua/g76975626-konditerska-grupa" class="cta-btn white-cta" target="_blank" onclick="fbq('track', 'Contact');">
                     <span>Замовити спеції Yamuna</span>
                     <i class="fas fa-external-link-alt"></i>
                 </a>
 
                 <div class="social-links">
                     <a href="https://www.instagram.com/yamuna.spices/" target="_blank" class="social-link"
-                        aria-label="Instagram">
+                        aria-label="Instagram" onclick="fbq('track', 'ViewContent');">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
                     <a href="https://www.facebook.com/yamuna.spices/" target="_blank" class="social-link"
-                        aria-label="Facebook">
+                        aria-label="Facebook" onclick="fbq('track', 'ViewContent');">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
                     <a href="https://www.youtube.com/@Priano-duhmiano" target="_blank" class="social-link"
-                        aria-label="YouTube">
+                        aria-label="YouTube" onclick="fbq('track', 'ViewContent');">
                         <i class="fa-brands fa-youtube"></i>
                     </a>
                 </div>
@@ -431,28 +537,17 @@
             <div class="footer-content">
                 <p>&copy; 2026 МПП фірма "Ямуна". Всі права захищені.</p>
                 <div class="footer-links">
-                    <a href="https://yamuna.ua/contact-us/" target="_blank">Контакти</a>
+                    <a href="https://yamuna.ua/contact-us/" target="_blank" onclick="fbq('track', 'ViewContent');">Контакти</a>
                     <span class="separator">|</span>
                     <a href="tel:+380673642033">+38 067 364 20 33</a>
                     <span class="separator">|</span>
                     <a href="mailto:info@yamuna.ua">info@yamuna.ua</a>
                 </div>
-                <p><a class="development" href="https://www.instagram.com/halina_itschool/" target="_blank" rel="noopener noreferrer">Design & development — HalinaITSchool</a></p>
+                <p><a class="development" href="https://www.instagram.com/halina_itschool/" target="_blank"
+                        rel="noopener noreferrer">Design & development — HalinaITSchool</a></p>
             </div>
         </div>
     </footer>
-
-    <!-- Video Modal -->
-    <div id="videoModal" class="modal">
-        <div class="modal-backdrop" onclick="closeVideo()"></div>
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeVideo()" aria-label="Закрити">
-                <i class="fas fa-times"></i>
-            </button>
-            <iframe id="videoFrame" src="" allowfullscreen></iframe>
-        </div>
-    </div>
-
 </body>
 
 </html>
