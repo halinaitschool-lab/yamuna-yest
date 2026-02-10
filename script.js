@@ -201,40 +201,6 @@
     }
 
     // ============================================
-    // MAP HOTSPOTS
-    // ============================================
-
-    function initMapHotspots() {
-        const svgObject = document.getElementById('svgMap');
-        const overlay = document.getElementById('mapOverlay');
-
-        if (!svgObject || !overlay) return;
-
-        // Wait for SVG to load
-        svgObject.addEventListener('load', () => {
-            fetch('hotspots.json')
-                .then(res => res.ok ? res.json() : Promise.reject('Hotspots not found'))
-                .then(hotspots => {
-                    hotspots.forEach(hotspot => {
-                        const btn = document.createElement('button');
-                        btn.className = 'map-hotspot';
-                        btn.setAttribute('data-region', hotspot.id);
-                        btn.setAttribute('aria-label', hotspot.name);
-                        btn.style.left = hotspot.left;
-                        btn.style.top = hotspot.top;
-                        btn.textContent = hotspot.name;
-
-                        // Tooltip on hover
-                        btn.title = hotspot.message;
-
-                        overlay.appendChild(btn);
-                    });
-                })
-                .catch(err => console.warn('Map hotspots:', err));
-        });
-    }
-
-    // ============================================
     // SMOOTH SCROLL FOR ANCHOR LINKS
     // ============================================
 
@@ -356,7 +322,6 @@
         initParallax();
         initScrollReveal();
         initRecipeCards();
-        initMapHotspots();
         initSmoothScroll();
         initBenefitCards();
         initFloatingElements();

@@ -509,6 +509,10 @@ section {
     .benefit-image-block {
         height: 260px; /* fixed mobile block height for visual balance */
     }
+
+    .recipe-accordion-header {
+        padding: var(--space-xs);
+    }
 }
 
 .benefit-card[data-benefit="1"] { animation-delay: 0.1s; }
@@ -861,49 +865,6 @@ section {
     opacity: 0.9;
 }
 
-/* === INTERACTIVE MAP === */
-.map-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-soft);
-    background-color: var(--white);
-}
-
-.svg-map {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.map-overlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
-
-.map-hotspot {
-    pointer-events: auto;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    background: var(--white);
-    color: var(--brand-red);
-    padding: var(--space-xs) var(--space-md);
-    border-radius: var(--radius-sm);
-    font-weight: 700;
-    font-size: 0.875rem;
-    border: 2px solid var(--brand-red);
-    cursor: pointer;
-    transition: var(--transition-smooth);
-}
-
-.map-hotspot:hover {
-    transform: translate(-50%, -50%) scale(1.1);
-    box-shadow: var(--shadow-soft);
-}
-
 /* === SPECIAL OFFER === */
 .offer-card {
     background: var(--white);
@@ -1141,6 +1102,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .recipe-accordion-header {
+        padding: var(--space-xs);
+    }
+
     :root {
         --space-md: 1.5rem;
         --space-lg: 2.5rem;
@@ -1450,5 +1415,9 @@ footer {
     .recipe-youtube-btn {
         width: 100%;
         justify-content: center;
+    }
+
+    .recipe-accordion-header {
+        padding: var(--space-xs);
     }
 }
