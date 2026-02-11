@@ -14,6 +14,7 @@
 :root {
     /* Colors */
     --brand-red: #E3000F;
+    --brand-dark-red: #b31916;
     --dark: #1a1a1a;
     --white: #ffffff;
     --cream: #FFF8F0;
@@ -456,8 +457,9 @@ section {
 }
 
 .benefit-card {
-    background: var(--white);
-    color: var(--dark);
+    background: var(--brand-red);
+    border: var(--space-xs) solid var(--white);
+    color: var(--white);
     padding: var(--space-lg);
     border-radius: var(--radius-md);
     position: relative;
@@ -536,7 +538,7 @@ section {
 
 .benefit-icon {
     font-size: 3.5rem;
-    color: var(--brand-red);
+    color: var(--white);
     margin-bottom: var(--space-md);
     display: inline-block;
     transition: var(--transition-smooth);
@@ -867,8 +869,9 @@ section {
 
 /* === SPECIAL OFFER === */
 .offer-card {
-    background: var(--white);
-    color: var(--dark);
+    background: var(--brand-red);
+    color: var(--white);
+    border: var(--space-xs) solid var(--white);
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
     display: grid;
@@ -883,11 +886,12 @@ section {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .offer-icon {
     font-size: 4rem;
-    color: var(--brand-red);
+    color: var(--white);
 }
 
 .offer-list {
@@ -904,12 +908,12 @@ section {
 }
 
 .offer-list i {
-    color: var(--brand-red);
+    color: var(--white);
 }
 
 .offer-visual {
     font-size: 6rem;
-    color: var(--brand-red);
+    color: var(--white);
     opacity: 0.2;
 }
 
@@ -962,7 +966,7 @@ section {
 /* === FINAL CTA === */
 .final-cta {
     padding: var(--space-xl) 0;
-    background: linear-gradient(135deg, var(--dark) 0%, #2a2a2a 100%);
+    background: var(--brand-dark-red);
 }
 
 .cta-content {
@@ -981,7 +985,7 @@ section {
     height: 50px;
     border-radius: 50%;
     background: var(--white);
-    color: var(--dark);
+    color: var(--brand-dark-red);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1235,8 +1239,9 @@ footer {
 
 /* Accordion Item */
 .recipe-accordion-item {
-    background: var(--white);
-    color: var(--dark);
+    background: var(--brand-dark-red);
+    border: var(--space-xs) solid var(--white);
+    color: var(--white);
     border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: var(--shadow-soft);
@@ -1276,20 +1281,21 @@ footer {
     width: 70px;
     height: 70px;
     object-fit: cover;
+    border: 1px solid var(--white);
     border-radius: var(--radius-sm);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .recipe-header-content h3 {
     font-size: 1.125rem;
-    color: var(--dark);
+    color: var(--white);
     margin: 0;
     font-weight: 700;
 }
 
 .accordion-icon {
     font-size: 1.25rem;
-    color: var(--brand-red);
+    color: var(--white);
     transition: transform 0.3s ease;
     flex-shrink: 0;
 }
@@ -1318,7 +1324,7 @@ footer {
 .recipe-section h4 {
     font-size: 1rem;
     font-weight: 700;
-    color: var(--dark);
+    color: var(--white);
     margin-bottom: var(--space-sm);
 }
 
@@ -1338,7 +1344,7 @@ footer {
     content: "✓";
     position: absolute;
     left: 0;
-    color: var(--brand-red);
+    color: var(--white);
     font-weight: 700;
 }
 
@@ -1360,7 +1366,7 @@ footer {
 
 .recipe-section p {
     line-height: 1.7;
-    color: var(--dark);
+    color: var(--white);
     opacity: 0.9;
 }
 
@@ -1370,10 +1376,10 @@ footer {
     align-items: center;
     gap: var(--space-sm);
     padding: 0.875rem 1.75rem;
-    background: #FF0000;
-    color: var(--white);
+    background: var(--white);
+    color: var(--brand-red);
     text-decoration: none;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
     font-weight: 700;
     margin-top: var(--space-sm);
     transition: var(--transition-smooth);
@@ -1381,9 +1387,8 @@ footer {
 }
 
 .recipe-youtube-btn:hover {
-    background: #CC0000;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-strong);
 }
 
 .recipe-youtube-btn i {
