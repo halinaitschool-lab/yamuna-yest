@@ -378,6 +378,7 @@ section {
     text-decoration: none;
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 .benefit-card[data-benefit="1"] {
@@ -1073,10 +1074,6 @@ footer {
     .logo-card {
         padding: var(--space-md);
     }
-
-    .logo-card[data-logo="1"], .logo-card[data-logo="4"] {
-        grid-column: span 2;
-    }
 }
 
 /* ================================
@@ -1085,10 +1082,6 @@ footer {
 @media (max-width: 480px) {
     .logo-staggered-grid {
         grid-template-columns: 1fr;
-    }
-
-    .logo-card[data-logo="1"] {
-        grid-column: span 1;
     }
 }
 
