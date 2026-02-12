@@ -772,13 +772,13 @@ section {
     border-radius: var(--radius-md);
     padding: var(--space-sm);
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     aspect-ratio: 16/5;
     box-shadow: var(--shadow-soft);
     position: relative;
     overflow: hidden;
-    opacity: 0;
+    /* opacity: 0; */
     transform: translateY(30px) scale(0.95);
     animation: logoFadeIn 0.6s ease-out forwards;
 }
@@ -818,8 +818,6 @@ section {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    filter: grayscale(100%);
-    opacity: 0.7;
     transition: var(--transition-smooth);
 }
 
