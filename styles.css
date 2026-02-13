@@ -426,10 +426,13 @@ section {
 }
 
 .benefit-icon {
-    font-size: 3.5rem;
     color: var(--white);
     margin-bottom: var(--space-md);
     transition: var(--transition-smooth);
+}
+
+.benefit-icon img {
+    width: 4rem;
 }
 
 .benefit-card:hover .benefit-icon {
