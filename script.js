@@ -244,30 +244,91 @@
     }
 
     // ============================================
-    // DOWNLOAD BUTTON
+    // DOWNLOAD BUTTON - PDF DOWNLOAD
     // ============================================
+
+    const PDF_PATH = 'images/book_of_secrets.pdf';
+    const PDF_FILENAME = 'Секрети дріжджового тіста.pdf';
+
+    /**
+     * Triggers a programmatic file download using a hidden <a> element.
+     * This approach:
+     * - Works across all modern browsers
+     * - Avoids opening the file in a new tab (uses `download` attribute)
+     * - Does not require a server round-trip (no fetch/XHR needed for same-origin files)
+     * - Is fully accessible and keyboard-friendly via the button
+     */
+    function triggerFileDownload(filePath, fileName) {
+        const anchor = document.createElement('a');
+        anchor.href = filePath;
+        anchor.download = fileName;
+        anchor.rel = 'noopener noreferrer';
+
+        // Must be in the DOM for Firefox compatibility
+        anchor.style.display = 'none';
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+    }
+
+    function setButtonState(btn, state, originalHTML) {
+        const states = {
+            loading: '<i class="fas fa-spinner fa-spin"></i> <span>Завантаження...</span>',
+            success: '<i class="fas fa-check"></i> <span>Готово!</span>',
+            error:   '<i class="fas fa-exclamation-triangle"></i> <span>Помилка</span>',
+            default: originalHTML,
+        };
+
+        btn.innerHTML = states[state] ?? originalHTML;
+        btn.disabled = state === 'loading';
+
+        if (state === 'error') {
+            btn.setAttribute('aria-label', 'Не вдалося завантажити файл. Спробуйте ще раз.');
+        } else {
+            btn.removeAttribute('aria-label');
+        }
+    }
 
     function initDownloadButton() {
         const downloadBtn = document.getElementById('downloadChecklist');
         if (!downloadBtn) return;
 
-        downloadBtn.addEventListener('click', (e) => {
+        const originalHTML = downloadBtn.innerHTML;
+
+        // Pre-validate the file exists via a lightweight HEAD request
+        // so we can fail fast before the user clicks
+        let fileAvailable = true;
+
+        fetch(PDF_PATH, { method: 'HEAD' })
+            .then(res => { fileAvailable = res.ok; })
+            .catch(() => { fileAvailable = false; });
+
+        downloadBtn.addEventListener('click', async (e) => {
             e.preventDefault();
 
-            const originalText = downloadBtn.innerHTML;
-            downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Завантаження...</span>';
-            downloadBtn.disabled = true;
+            if (!fileAvailable) {
+                setButtonState(downloadBtn, 'error', originalHTML);
+                setTimeout(() => setButtonState(downloadBtn, 'default', originalHTML), 3000);
+                console.warn(`[Yamuna] PDF not found at: ${PDF_PATH}`);
+                return;
+            }
 
-            setTimeout(() => {
-                downloadBtn.innerHTML = '<i class="fas fa-check"></i> <span>Готово!</span>';
-                
-                alert('🎉 Чеклист успішно завантажено!\n\n📋 Що всередині:\n✓ 15 перевірених рецептів\n✓ Покрокові інструкції\n✓ Професійні поради\n✓ Таблиця мір\n\nДякуємо, що обрали Ямуна!');
+            setButtonState(downloadBtn, 'loading', originalHTML);
 
-                setTimeout(() => {
-                    downloadBtn.innerHTML = originalText;
-                    downloadBtn.disabled = false;
-                }, 2000);
-            }, 1500);
+            try {
+                // Brief artificial delay for UX feedback (feels intentional, not instant)
+                await new Promise(resolve => setTimeout(resolve, 600));
+
+                triggerFileDownload(PDF_PATH, PDF_FILENAME);
+
+                setButtonState(downloadBtn, 'success', originalHTML);
+            } catch (err) {
+                console.error('[Yamuna] Download failed:', err);
+                setButtonState(downloadBtn, 'error', originalHTML);
+            } finally {
+                // Restore button after delay
+                setTimeout(() => setButtonState(downloadBtn, 'default', originalHTML), 2500);
+            }
         });
     }
 
